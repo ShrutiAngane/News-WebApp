@@ -14,6 +14,8 @@ const Navbar = (props) => {
     const[categoryclick,setclick]=useState(false)
     const searchref=useRef(null)
     const dropdownref=useRef(null)
+    const homelink=useRef(null)
+    const trendinglink=useRef(null)
 
     function display_search(e){
       e.target.classList.add('hidden');
@@ -22,7 +24,9 @@ const Navbar = (props) => {
 
     function togglemenu(){
       settoggle((prev)=>!prev)
-      toggle?document.body.style.overflow='visible':document.body.style.overflow='hidden';
+      toggle?document.body.style.overflow='visible':document.body.style.overflowY='hidden';
+      setdropdown(false);
+      setsearch(false);
     }
 
     function getcategory(e){
@@ -45,35 +49,44 @@ const Navbar = (props) => {
         ></img>
         <div
           className={`${
-            toggle ? "flex" : "hidden"
-          } absolute right-0 top-0 bottom-[-6px] z-10 border`}
+            toggle ? "right-0 scale-x-105 duration-500 flex" : "-right-[300px] scale-x-0 duration-500"
+          } absolute z-10 top-0 bottom-[-6px] border`}
         >
-          <ul className="flex flex-col justify-start bg-offWhite w-[300px] pt-[120px] md:pt-[220px] pl-[10px]">
+          <ul className={`flex flex-col justify-start bg-offWhite w-[300px] ${dropdown?"pt-[80px] xs:pt-[20px]":"pt-[120px]"} md:pt-[220px] pl-[10px]`}>
             <Link
-              className="mb-[50px] relative navlink font-bold text-[20px] cursor-pointer hover:text-primary text-secondary"
+              className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/"
-              onClick={() => settogle((prev) => !prev)}
+              onClick={() => {settogle((prev) => !prev)
+              setsearch(false)}}
+              ref={homelink}
             >
               Home
             </Link>
             <Link
-              className="mb-[50px] relative navlink font-bold text-[20px] cursor-pointer hover:text-primary text-secondary"
+              className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/trending"
               onClick={() => settogle((prev) => !prev)}
+              ref={trendinglink}
             >
               Trending
             </Link>
             <div
-              className="mb-[50px] relative navlink font-bold text-[20px] cursor-pointer hover:text-primary text-secondary"
+              className={`${dropdown?"mb-[20px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               ref={dropdownref}
               onClick={(e) => {
                 if (e.target.classList.contains("navlink")) {
                   e.target.classList.remove("navlink");
                   e.target.classList.remove("relative");
+                  e.target.classList.add("margindrop");
+                  homelink.current.classList.add("margindrop")
+                  trendinglink.current.classList.add("margindrop")
                   setdropdown((prev) => !prev);
                 } else {
                   e.target.classList.add("navlink");
                   e.target.classList.add("relative");
+                  e.target.classList.remove("margindrop");
+                  homelink.current.classList.remove("margindrop")
+                  trendinglink.current.classList.remove("margindrop")
                   setdropdown((prev) => !prev);
                 }
               }}
@@ -81,10 +94,10 @@ const Navbar = (props) => {
               Categories
               <ul
               className={`${
-                dropdown ? "grid grid-rows-5 grid-cols-3 gap-x-7" : "hidden"
-              } absolute bg-softRed text-white z-10 w-[400px] mt-2 md:mt-5`}
+                dropdown ? "grid grid-cols-2 xs:flex xs:flex-col mt-2" : "hidden"
+              } absolute z-10 ml-[15px] md:mt-5`}
             >
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="sport"
@@ -95,7 +108,7 @@ const Navbar = (props) => {
                   Sports
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="tech"
@@ -106,7 +119,7 @@ const Navbar = (props) => {
                   Technology
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="world"
@@ -117,7 +130,7 @@ const Navbar = (props) => {
                   World
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="finance"
@@ -128,7 +141,7 @@ const Navbar = (props) => {
                   Finance
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="politics"
@@ -140,7 +153,7 @@ const Navbar = (props) => {
                   Politics
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="business"
@@ -151,7 +164,7 @@ const Navbar = (props) => {
                   Business
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="economics"
@@ -163,7 +176,7 @@ const Navbar = (props) => {
                   Economics
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className=" text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="entertainment"
@@ -174,7 +187,7 @@ const Navbar = (props) => {
                   Entertainment
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className=" text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="beauty"
@@ -185,7 +198,7 @@ const Navbar = (props) => {
                   Beauty
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="travel"
@@ -196,7 +209,7 @@ const Navbar = (props) => {
                   Travel
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="music"
@@ -207,7 +220,7 @@ const Navbar = (props) => {
                   Music
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="food"
@@ -218,7 +231,7 @@ const Navbar = (props) => {
                   Food
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="science"
@@ -229,7 +242,7 @@ const Navbar = (props) => {
                   Science
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary  hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="gaming"
@@ -240,7 +253,7 @@ const Navbar = (props) => {
                   Gaming
                 </div>
               </Link>
-              <Link to="/categories" className=" mb-4 bg-softRed m-3">
+              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
                 <div
                   className="hover:underline"
                   data-value="energy"
@@ -255,7 +268,7 @@ const Navbar = (props) => {
             </div>
             <div
               ref={searchref}
-              className="text-secondary relative navlink mb-[50px] font-bold text-[20px] cursor-pointer hover:text-primary"
+              className={`text-secondary relative ${search?"hidden":"flex"} navlink ${dropdown?"-bottom-[346px] xs:-bottom-[618px]":"mb-[50px]"} font-bold text-[15px] cursor-pointer hover:text-primary`}
               onClick={display_search}
             >
               Search
@@ -263,7 +276,7 @@ const Navbar = (props) => {
             <Link
               className={`${
                 search ? "flex" : "hidden"
-              } justify-center items-center`}
+              } justify-center items-center text-[15px] ${dropdown?"-bottom-[346px] xs:-bottom-[618px] relative":""}`}
               to="/search"
             >
               <input
@@ -288,6 +301,7 @@ const Navbar = (props) => {
           <Link
             className="text-secondary relative navlink m-10 font-bold text-[20px] cursor-pointer hover:text-primary"
             to="/"
+            onClick={()=>setsearch(false)}
           >
             Home
           </Link>
@@ -309,8 +323,8 @@ const Navbar = (props) => {
             Categories
             <ul
               className={`${
-                dropdown ? "grid grid-rows-5 grid-cols-3 gap-x-7" : "hidden"
-              } absolute bg-softRed text-white z-10 w-[400px] mt-5`}
+                dropdown ? "grid grid-rows-5 grid-cols-3 gap-x-2" : "hidden"
+              } absolute bg-softRed bg-blend-overlay rounded-lg text-white z-10 max-w-max mt-5 right-[10px] shadow-lg shadow-orange-700`}
             >
               <Link to="/categories" className=" mb-4 bg-softRed m-3">
                 <div
@@ -457,7 +471,7 @@ const Navbar = (props) => {
           </Link>
           <div
             ref={searchref}
-            className="text-secondary relative navlink m-10 font-bold text-[20px] cursor-pointer hover:text-primary"
+            className={`text-secondary ${search?"hidden":"flex"} relative navlink m-10 font-bold text-[20px] cursor-pointer hover:text-primary`}
             onClick={display_search}
           >
             Search
