@@ -4,7 +4,6 @@ import defaultimg from '../assets/default_image.jpeg';
 
 
 const News = () => {
-    const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
     const [covid,setcovid]=useState([])
     const[loading,setloading]=useState(true)
     const[news,setnews]=useState([])
@@ -13,7 +12,7 @@ const News = () => {
       const opt = {
         method: "GET",
         headers: {
-          "x-api-key": apikey,
+          "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
         },
       };
       fetch(

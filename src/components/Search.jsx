@@ -5,7 +5,6 @@ import Spinner from './Spinner'
 
 const Search = (props) => {
   
-  const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
   const[searchnews,setsearchnews]=useState([])
   const[loading,setloading]=useState(true)
 
@@ -13,7 +12,7 @@ const Search = (props) => {
         const options = {
           method: "GET",
           headers: {
-            "x-api-key": apikey,
+            "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
           },
         };
         fetch(

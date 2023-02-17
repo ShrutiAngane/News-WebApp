@@ -9,14 +9,13 @@ const Trending = () => {
   const[page,setpage]=useState(1)
   const[loading,setloading]=useState(true)
   const page_size=10
-  const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
   const[trendingnews,setnews]=useState([])
 
   useEffect(()=>{
         const options = {
           method: "GET",
           headers: {
-            "x-api-key": apikey,
+            "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
           },
         };
         fetch(
