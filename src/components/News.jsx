@@ -1,10 +1,10 @@
 import React, { useEffect,useState } from 'react'
-import { Link } from 'react-router-dom'
-import articles from '../constants/articles.json'
 import Spinner from './Spinner'
+import defaultimg from '../assets/default_image.jpeg';
+
 
 const News = () => {
-    const apikey='TDJ-7vRhQtYnGOsMS2h8kQ713e-IOwecOKfYUFIv3M0'
+    const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
     const [covid,setcovid]=useState([])
     const[loading,setloading]=useState(true)
     const[news,setnews]=useState([])
@@ -50,7 +50,7 @@ const News = () => {
       <section className='md:col-start-1 col-end-3 md:row-end-1'>
       {news.map((element)=>{
         return <div key={element._id} className='flex flex-col justify-between md:grid md:gap-x-5 md:grid-cols-2'>
-          <img src={element.media} className='md:col-span-3 w-[1200px] h-[500px] md:h-[600px]'></img>
+          <img src={element.media} className='md:col-span-3 w-[1200px] h-[500px] md:h-[600px]' onError={(e)=>e.target.src=defaultimg}></img>
         <h2 className='text-primary font-extrabold sm:text-[25px] md:text-[35px] md:row-end-3 md:col-start-1'>{element.title}</h2>
         <p className='text-secondary md:col-start-2 sm:text-[18px] md:row-start-2 md:text-[20px]'>{element.summary}</p>
         <button className='bg-softRed text-white font-bold w-[150px] h-[60px] my-4 md:mt-[340px] xl:mt-[220px] transition-all ease-in-out delay-100 hover:bg-softOrange md:col-start-1 md:row-start-2'><a href={element.link}>READ MORE</a></button>
@@ -74,7 +74,7 @@ const News = () => {
     <section className='flex flex-col md:flex-row xl:gap-x-40 col-start-1 col-end-4 row-start-2 row-end-2 h-fit'>
       {headlines.map((element,index)=>{
         return <div className='grid grid-rows-1 gap-x-5' key={element._id}>
-          <img src={element.media} className='w-[100%] h-[100%]'></img>
+          <img src={element.media} className='w-[200px] md:w-[100%] md:h-[100%]' onError={(e)=>e.target.src=defaultimg}></img>
           <h4 className='row-start-1 col-start-2 font-inter text-[50px] text-grayishBlue font-bold'>{`0${(index+1)}`}</h4>
           <h2 className='row-start-1 col-start-2 mt-[74px] font-inter text-primary font-bold hover:underline cursor-pointer text-[13px] sm:text-[16px] lg:text-[20px]'><a href={element.link} className='m-0'>{element.title}</a></h2>
         </div>

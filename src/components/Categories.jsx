@@ -8,7 +8,7 @@ const Categories = (props) => {
   const[loading,setloading]=useState(true)
   const[page,setpage]=useState(1)
   const page_size=10
-  const apikey='TDJ-7vRhQtYnGOsMS2h8kQ713e-IOwecOKfYUFIv3M0'
+  const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
   const[categorynews,setcatnews]=useState([])
 
   useEffect(()=>{

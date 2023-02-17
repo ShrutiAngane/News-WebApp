@@ -5,7 +5,7 @@ import Spinner from './Spinner'
 
 const Search = (props) => {
   
-  const apikey='TDJ-7vRhQtYnGOsMS2h8kQ713e-IOwecOKfYUFIv3M0'
+  const apikey=import.meta.env.VITE_APP_NEWSAPI_KEY;
   const[searchnews,setsearchnews]=useState([])
   const[loading,setloading]=useState(true)
 
