@@ -464,12 +464,11 @@ const Navbar = (props) => {
           </Link>
           <div
             ref={searchref}
-            className={`text-secondary ${search?"hidden":"flex"} relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}
             onClick={()=>setsearch(true)}
+            className={`${search?'m-[10px]':'m-10'}`}
           >
-            Search
-          </div>
-          <div
+            <p className={`text-secondary ${search?"hidden":"flex"} relative navlink  font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}>Search</p>
+            <div
             className={`${
               search ? "flex" : "hidden"
             } justify-center items-center`}
@@ -494,6 +493,8 @@ const Navbar = (props) => {
               </button>
             </Link>
           </div>
+          </div>
+          
         </ul>
       </div>
     </nav>
