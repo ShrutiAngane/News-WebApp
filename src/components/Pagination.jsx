@@ -9,7 +9,7 @@ const Pagination = (props) => {
         props.setpage(p)
     }
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center gap-[10px]">
       <button
         className={`${props.page===1?'disabled':''} text-[10px] w-[25px] md:w-[40px] md:h-[150px] md:mx-5 md:text-[16px]`}
         value={"Previous"}
@@ -18,7 +18,7 @@ const Pagination = (props) => {
         <img src={previous} className={`${props.page===1?'opacity-25':''}`}/>
         Previous
       </button>
-      <div className="flex justify-center items-center mt-[-5px]">
+      <div className="flex justify-center items-center mt-[-5px] gap-1">
         {[...Array(props.page_size)].map((_, index) => {
           return (
             <span
@@ -26,7 +26,7 @@ const Pagination = (props) => {
               onClick={(e) => {
                 paginate(index+1) 
               }}
-              className={`${props.page===index+1?'bg-grayishBlue':''}px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 border-2 border-black cursor-pointer hover:bg-grayishBlue`}
+              className={`${props.page===index+1?'bg-grayishBlue':''}px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 cursor-pointer hover:bg-grayishBlue`}
             >
               {index+1}
             </span>

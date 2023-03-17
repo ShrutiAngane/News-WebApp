@@ -1,6 +1,9 @@
 import React, { useEffect,useState } from 'react'
 import Spinner from './Spinner'
 import defaultimg from '../assets/default_image.jpeg';
+import article from '../constants/articles.json'
+import defaultimg2 from '../assets/default2.jpg'
+
 
 
 const News = () => {
@@ -44,42 +47,47 @@ const News = () => {
         .catch(err => console.error(err));
 
     },[])
+   
   return (
-    <main className='flex flex-col md:grid md:grid-cols-3 md:gap-y-5'>
-      <section className='md:col-start-1 col-end-3 md:row-end-1'>
+    <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
+      <section className='flex md:col-start-1 col-end-3 md:row-end-1'>
       {news.map((element)=>{
-        return <div key={element._id} className='flex flex-col justify-between md:grid md:gap-x-5 md:grid-cols-2'>
-          <img src={element.media} className='md:col-span-3 w-[100%] xl:w-[1200px] xl:h-[500px] lg:h-[500px] md:h-[600px] ' onError={(e)=>e.target.src=defaultimg}></img>
-        <h2 className='text-primary font-extrabold sm:text-[25px] md:text-[35px] md:row-end-3 md:col-start-1'>{element.title}</h2>
-        <p className='text-secondary md:col-start-2 sm:text-[18px] md:row-start-2 xl:text-[20px]'>{element.summary}</p>
-        <button className='bg-softRed text-white font-bold w-[150px] h-[60px] my-4 md:mt-[340px] lg:mt-[228px] xl:mt-[220px] transition-all ease-in-out delay-100 hover:bg-softOrange md:col-start-1 md:row-start-2'><a href={element.link}>READ MORE</a></button>
+        return <div key={element._id} className='flex flex-col justify-between m-0 lg:items-center md:grid md:gap-x-5 md:grid-cols-2  w-full'>
+          <img src={/d=blank/.test(element.media)?defaultimg:element.media} className='md:col-span-3 w-[100%] h-[300px] sm:h-[400px] xl:h-[500px] object-cover object-center' onError={(e)=>e.target.src=defaultimg}></img>
+          <div className='flex flex-col w-full lg:h-full justify-start gap-[20px] items-start md:col-start-1 md:row-start-2'>
+          <h2 className='hidden md:block text-primary font-extrabold text-[18px] md:text-[20px]  xl:text-[25px] text-ellipsis overflow-hidden'>{element.title}</h2>
+          <a className='md:hidden hover:cursor-pointer hover:underline' href={element.link}><h2 className='text-primary font-extrabold text-[18px] md:text-[20px] text-ellipsis overflow-hidden'>{element.title}</h2></a>
+          <button className='hidden md:flex items-center justify-center bg-softRed text-white font-bold w-[150px] h-[60px] transition-all ease-in-out delay-100 hover:bg-softOrange'><a href={element.link}>READ MORE</a></button>
+          </div>
+          <p className='text-secondary md:col-start-2 text-[14px] md:row-start-2 md:text-[16px] xl:text-[20px]'>{element.summary}</p>
         </div>
       })}
         
     </section>
-    <section className='md:col-start-3 z-0 md:row-end-1'>
-      <div className='flex flex-col bg-primary h-[100%] justify-evenly md:p-[10px] lg:p-[30px]'>
+    <section className='md:col-start-3 z-0 md:row-end-1 max-w-full max-h-full'>
+      <div className='flex flex-col bg-primary h-[100%] justify-evenly p-[10px] xl:p-[30px]'>
       {loading && <Spinner/>}
         <h2 className='font-bolder text-softOrange text-[25px] xl:text-[30px] text-center mb-5 md:mb-0 drop-shadow-md'>COVID-19 UPDATES</h2>
         {covid.map((element,index)=>{
           return <div key={element.news_id} className='flex flex-col cursor-pointer mt-5'>
-            <a className='text-white mb-5 hover:font-semibold hover:underline decoration-solid text-[14px] md:text-[16px] xl:text-[22px]' href={element.link}>{element.title}</a>
-            <p className='text-secondary mb-5'>{element.content}</p>
+            <a className='text-white mb-5 hover:underline decoration-solid text-[14px] md:text-[16px] xl:text-[22px]' href={element.link}>{element.title}</a>
+            <p className='text-secondary mb-5'>{element.content!=null?element.content:'Click the above link to read more.'}</p>
             <hr className={`${index!==covid.length-1?'flex mt-5':'hidden'}`}/>
           </div>
         })}
       </div>
     </section>
-    <section className='flex flex-col md:flex-row lg:gap-x-40 col-start-1 col-end-4 row-start-2 row-end-2 h-fit'>
+    <section className='flex flex-col md:flex-row justify-between md:items-center col-start-1 col-end-4 row-start-2 row-end-2 h-fit max-w-full'>
       {headlines.map((element,index)=>{
-        return <div className='grid grid-rows-1 gap-x-5' key={element._id}>
-          <img src={element.media} className='w-[200px] md:w-[100%] md:h-[100%]' onError={(e)=>e.target.src=defaultimg}></img>
-          <h4 className='row-start-1 col-start-2 font-inter text-[50px] text-grayishBlue font-bold'>{`0${(index+1)}`}</h4>
-          <h2 className='row-start-1 col-start-2 mt-[74px] font-inter text-primary font-bold hover:underline cursor-pointer text-[13px] sm:text-[16px] md:text-[18px] xl:text-[20px]'><a href={element.link} className='m-0'>{element.title}</a></h2>
+        return <div className='grid grid-rows-1 items-center gap-x-1 md:w-[330px] lg:w-[400px] xl:w-[500px] w-fit' key={element._id}>
+          <img src={/d=blank/.test(element.media)?defaultimg2:element.media} className=' max-w-[150px] h-full ss:max-w-[200px] lg:h-[200px] object-fill' onError={(e)=>e.target.src=defaultimg}></img>
+          <div className='flex flex-col h-full w-full justify-evenly items-start col-start-2'>
+            <h4 className='font-inter text-[40px] ss:text-[50px] text-grayishBlue font-bold'>{`0${(index+1)}`}</h4>
+            <h2 className='font-inter text-primary font-bold hover:underline cursor-pointer text-[13px] sm:text-[16px] md:text-[16px] lg:text-[18px] xl:text-[20px]'><a href={element.link} className='m-0'>{element.title.length>67?element.title.slice(0,60)+'...':element.title}</a></h2>
+          </div>
         </div>
 
       })}
-
     </section>
     </main>
   )

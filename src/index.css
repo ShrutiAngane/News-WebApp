@@ -7,9 +7,7 @@
     margin:5px 5px;
     padding:0;
 }
-body{
-    
-}
+
 .navlink::before{
     content: '';
     position: absolute;
@@ -28,4 +26,5 @@ body{
     margin-bottom: 30px;
     padding-top: 0px;
 }
+
 

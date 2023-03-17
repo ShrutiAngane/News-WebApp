@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from 'react'
-import articles from '../constants/articles.json'
 import DisplayNews from './DisplayNews'
 import Pagination from './Pagination'
 import Spinner from './Spinner'
@@ -37,7 +36,7 @@ const Trending = () => {
     setpage((prev)=>prev-1)
   }
 
-  // let trendingnews=articles.articles.slice(14,51)
+  
   return (
     <>
     {loading && <Spinner/>}

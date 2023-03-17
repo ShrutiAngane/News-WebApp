@@ -4,27 +4,33 @@ import menu from '../assets/icon-menu.svg'
 import menuclose from '../assets/icon-menu-close.svg'
 import { Link } from "react-router-dom"
 import '../index.css'
+import useClickOutside from './UseClickOutside.js'
 
 
 
 const Navbar = (props) => {
     const[toggle,settoggle]=useState(false)
     const[search,setsearch]=useState(false)
+    const[searchmob,setsearchmob]=useState(false)
     const[dropdown,setdropdown]=useState(false)
-    const[categoryclick,setclick]=useState(false)
+    const[dropdownmob,setdropdownmob]=useState(false)
     const searchref=useRef(null)
+    const searchrefmob=useRef(null)
     const dropdownref=useRef(null)
-    const homelink=useRef(null)
-    const trendinglink=useRef(null)
+    const dropdownrefmob=useRef(null)
+   
+
+    
+    toggle?'':document.body.style.overflowX='hidden'
+   
 
     function display_search(e){
-      e.target.classList.add('hidden');
-      setsearch(true);
+      setsearchmob(true);
     }
 
     function togglemenu(){
       settoggle((prev)=>!prev)
-      toggle?document.body.style.overflow='visible':document.body.style.overflowY='hidden';
+      toggle?document.body.style.overflowY='visible':document.body.style.overflowY='hidden';
       setdropdown(false);
       setsearch(false);
     }
@@ -35,9 +41,22 @@ const Navbar = (props) => {
         dropdownref.current.classList.add('relative')
     }
 
+    useClickOutside(dropdownref,()=>{
+      setdropdown(false);
+    })
+    useClickOutside(dropdownrefmob,()=>{
+      setdropdownmob(false);
+    })
+    useClickOutside(searchref,()=>{
+      setsearch(false);
+    })
+    useClickOutside(searchrefmob,()=>{
+      setsearchmob(false);
+    })
+
 
   return (
-    <nav className="flex justify-between items-center overflow-hidden">
+    <nav className="flex justify-between items-center overflow-hidden md:ml-[20px] md:mr-[20px]">
       <div>
         <img src={logo}></img>
       </div>
@@ -49,16 +68,16 @@ const Navbar = (props) => {
         ></img>
         <div
           className={`${
-            toggle ? "right-0 scale-x-105 duration-500 flex" : "-right-[300px] scale-x-0 duration-500"
-          } absolute z-10 top-0 bottom-[-6px] border`}
+            toggle ? "right-0 scale-x-105 duration-500 flex" : "-right-[300px] scale-x-0 duration-500 flex"
+          } absolute z-10 top-0 h-[100vh] border`}
         >
-          <ul className={`flex flex-col justify-start bg-offWhite w-[300px] ${dropdown?"pt-[80px] xs:pt-[20px]":"pt-[120px]"} md:pt-[220px] pl-[10px]`}>
+          <ul className={`flex flex-col justify-start bg-offWhite w-[300px] ${dropdown?"pt-[80px]":"pt-[120px]"} md:pt-[220px] pl-[10px]`}>
             <Link
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/"
               onClick={() => {settogle((prev) => !prev)
               setsearch(false)}}
-              ref={homelink}
+              
             >
               Home
             </Link>
@@ -66,35 +85,19 @@ const Navbar = (props) => {
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/trending"
               onClick={() => settogle((prev) => !prev)}
-              ref={trendinglink}
+              
             >
               Trending
             </Link>
             <div
               className={`${dropdown?"mb-[20px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
+              onClick={() => setdropdown(true)}
               ref={dropdownref}
-              onClick={(e) => {
-                if (e.target.classList.contains("navlink")) {
-                  e.target.classList.remove("navlink");
-                  e.target.classList.remove("relative");
-                  e.target.classList.add("margindrop");
-                  homelink.current.classList.add("margindrop")
-                  trendinglink.current.classList.add("margindrop")
-                  setdropdown((prev) => !prev);
-                } else {
-                  e.target.classList.add("navlink");
-                  e.target.classList.add("relative");
-                  e.target.classList.remove("margindrop");
-                  homelink.current.classList.remove("margindrop")
-                  trendinglink.current.classList.remove("margindrop")
-                  setdropdown((prev) => !prev);
-                }
-              }}
             >
               Categories
               <ul
               className={`${
-                dropdown ? "grid grid-cols-2 xs:flex xs:flex-col mt-2" : "hidden"
+                dropdown ? "grid grid-cols-2 mt-2" : "hidden"
               } absolute z-10 ml-[15px] md:mt-5`}
             >
               <Link to="/categories" className="text-secondary hover:text-primary font-bold">
@@ -267,15 +270,15 @@ const Navbar = (props) => {
             </ul>
             </div>
             <div
-              ref={searchref}
-              className={`text-secondary relative ${search?"hidden":"flex"} navlink ${dropdown?"-bottom-[346px] xs:-bottom-[618px]":"mb-[50px]"} font-bold text-[15px] cursor-pointer hover:text-primary`}
+              className={`text-secondary relative ${searchmob?"hidden":"flex"} navlink ${dropdown?"-bottom-[346px]":"mb-[50px]"} font-bold text-[15px] cursor-pointer hover:text-primary`}
               onClick={display_search}
+              ref={searchrefmob}
             >
               Search
             </div>
             <Link
               className={`${
-                search ? "flex" : "hidden"
+                searchmob ? "flex" : "hidden"
               } justify-center items-center text-[15px] ${dropdown?"-bottom-[346px] xs:-bottom-[618px] relative":""}`}
               to="/search"
             >
@@ -306,25 +309,15 @@ const Navbar = (props) => {
             Home
           </Link>
           <div
-            ref={dropdownref}
-            className="text-secondary m-10 navlink relative font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary"
-            onClick={(e) => {
-              if (e.target.classList.contains("navlink")) {
-                e.target.classList.remove("navlink");
-                e.target.classList.remove("relative");
-                setdropdown((prev) => !prev);
-              } else {
-                e.target.classList.add("navlink");
-                e.target.classList.add("relative");
-                setdropdown((prev) => !prev);
-              }
-            }}
+            ref={dropdownrefmob}
+            className={`text-secondary m-10 ${dropdownmob?'':'navlink relative'} font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}
+            onClick={() => setdropdownmob((prev)=>!prev)}
           >
             Categories
             <ul
               className={`${
-                dropdown ? "grid grid-rows-5 grid-cols-3 xl:gap-x-2" : "hidden"
-              } absolute bg-softRed bg-blend-overlay rounded-lg text-white z-10 max-w-max mt-5 right-[10px] shadow-lg shadow-orange-700`}
+                dropdownmob ? "grid grid-rows-5 grid-cols-3 xl:gap-x-2" : "hidden"
+              } absolute bg-softRed bg-blend-overlay rounded-lg text-white z-10 max-w-max mt-5 right-[139px] shadow-lg shadow-orange-700`}
             >
               <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
                 <div
@@ -472,7 +465,7 @@ const Navbar = (props) => {
           <div
             ref={searchref}
             className={`text-secondary ${search?"hidden":"flex"} relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}
-            onClick={display_search}
+            onClick={()=>setsearch(true)}
           >
             Search
           </div>
