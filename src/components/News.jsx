@@ -50,7 +50,7 @@ const News = () => {
    
   return (
     <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
-      <section className='flex md:col-start-1 col-end-3 md:row-end-1'>
+      <section className='flex md:col-start-1 col-end-3 md:row-end-1 md:items-start'>
       {news.map((element)=>{
         return <div key={element._id} className='flex flex-col justify-between m-0 lg:items-center md:grid md:gap-x-5 md:grid-cols-2  w-full'>
           <img src={/d=blank/.test(element.media)?defaultimg:element.media} className='md:col-span-3 w-[100%] h-[300px] sm:h-[400px] xl:h-[500px] object-cover object-center' onError={(e)=>e.target.src=defaultimg}></img>
