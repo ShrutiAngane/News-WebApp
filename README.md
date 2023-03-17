@@ -6,10 +6,11 @@ This application provides its end users with current updated news.It acts as a c
 
 ## Table of Contents
 
-* Tech Stack
-* Setup and Installation
-* Credits and Sources
-* References
+* [Tech Stack](https://github.com/ShrutiAngane/News-WebApp#tech-stack)
+* [Installation](https://github.com/ShrutiAngane/News-WebApp#installation)  
+* [Setup](https://github.com/ShrutiAngane/News-WebApp#setup)
+* [Credits and Sources](https://github.com/ShrutiAngane/News-WebApp#credits-and-sources)  
+
 ## Tech Stack
 
 **Client:**  
