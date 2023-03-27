@@ -18,6 +18,8 @@ const Navbar = (props) => {
     const searchrefmob=useRef(null)
     const dropdownref=useRef(null)
     const dropdownrefmob=useRef(null)
+    const searchquery=useRef(null)
+    const searchquerydesk=useRef(null)
    
 
     
@@ -74,8 +76,8 @@ const Navbar = (props) => {
           <ul className={`flex flex-col justify-start bg-offWhite w-[300px] ${dropdown?"pt-[80px]":"pt-[120px]"} md:pt-[220px] pl-[10px]`}>
             <Link
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
-              to="/"
-              onClick={() => {settogle((prev) => !prev)
+              to="/home"
+              onClick={() => {togglemenu()
               setsearch(false)}}
               
             >
@@ -84,7 +86,7 @@ const Navbar = (props) => {
             <Link
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/trending"
-              onClick={() => settogle((prev) => !prev)}
+              onClick={() => togglemenu()}
               
             >
               Trending
@@ -105,7 +107,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="sport"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev) 
+                   togglemenu()
                   }}
                 >
                   Sports
@@ -116,7 +118,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="tech"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Technology
@@ -127,7 +129,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="world"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   World
@@ -138,7 +140,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="finance"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Finance
@@ -149,7 +151,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="politics"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }
                 }
                 >
@@ -161,7 +163,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="business"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Business
@@ -172,7 +174,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="economics"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }
                 }
                 >
@@ -184,7 +186,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="entertainment"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Entertainment
@@ -195,7 +197,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="beauty"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Beauty
@@ -206,7 +208,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="travel"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Travel
@@ -217,7 +219,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="music"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Music
@@ -228,7 +230,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="food"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Food
@@ -239,7 +241,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="science"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Science
@@ -250,7 +252,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="gaming"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Gaming
@@ -261,7 +263,7 @@ const Navbar = (props) => {
                   className="hover:underline"
                   data-value="energy"
                   onClick={(e) => {getcategory(e)
-                    settoggle((prev) => !prev)
+                    togglemenu()
                   }}
                 >
                   Energy
@@ -270,32 +272,34 @@ const Navbar = (props) => {
             </ul>
             </div>
             <div
-              className={`text-secondary relative ${searchmob?"hidden":"flex"} navlink ${dropdown?"-bottom-[346px]":"mb-[50px]"} font-bold text-[15px] cursor-pointer hover:text-primary`}
               onClick={display_search}
               ref={searchrefmob}
             >
-              Search
-            </div>
-            <Link
-              className={`${
+              <p className={`text-secondary relative ${searchmob?"hidden":"flex"} navlink ${dropdown?"-bottom-[346px]":"mb-[50px]"} font-bold text-[15px] cursor-pointer hover:text-primary`}>Search</p>
+              <div className={`${
                 searchmob ? "flex" : "hidden"
-              } justify-center items-center text-[15px] ${dropdown?"-bottom-[346px] xs:-bottom-[618px] relative":""}`}
-              to="/search"
-            >
+              } justify-center items-center text-[15px] ${dropdown?"-bottom-[346px] xs:-bottom-[618px] relative":""}`}>
               <input
                 type="text"
                 placeholder="search anything here.."
                 className="text-center mr-[15px] border-2 h-[45px] w-[218px] md:m-[12px]"
-                value={props.userinput}
-                onChange={(e) => setquery(e.target.value)}
+                ref={searchquery}
+                // value={props.userinput}
+                // onChange={(e) => props.setquery(e.target.value)}
               ></input>
+              <Link
+              to="/search"
+            >
               <button
                 className="bg-softRed text-white h-[40px] w-[83px] cursor-pointer"
-                onClick={() => console.log("jed")}
+                onClick={() => {props.setquery(searchquery.current.value)
+                togglemenu()}}
               >
                 Search
               </button>
             </Link>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
@@ -303,7 +307,7 @@ const Navbar = (props) => {
         <ul className="flex flex-row list-none">
           <Link
             className="text-secondary relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary"
-            to="/"
+            to="/home"
             onClick={()=>setsearch(false)}
           >
             Home
@@ -477,14 +481,13 @@ const Navbar = (props) => {
               type="text"
               placeholder="search anything here.."
               className="text-center md:border-2 md:h-[45px] md:w-[218px] md:m-[12px]"
-              value={props.userinput}
-              onChange={(e) => props.setquery(e.target.value)}
+              ref={searchquerydesk}
             ></input>
             <Link to="/search">
               <button
                 className="bg-softRed text-white md:h-[40px] md:w-[83px] cursor-pointer"
                 onClick={() => {
-                  props.setquery(props.userinput);
+                  props.setquery(searchquerydesk.current.value);
                   setsearch((prev)=>!prev);
                   searchref.current.classList.remove("hidden");
                 }}
