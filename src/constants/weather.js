@@ -1,0 +1,43 @@
+export const weathericons={
+"Haze":{
+    icon:"FOG",
+    color:"#A1ACBD"
+},
+"Clouds":{
+    icon:"CLOUDY",
+    color:"#A1ACBD"
+},
+"Rain":{
+    icon:"RAIN",
+    color:"#00C2F6"
+},
+"Snow":{
+    icon:"SNOW",
+    color:"white"
+},
+"Dust":{
+    icon:"WIND",
+    color:"#A1ACBD"
+},
+"Drizzle":{
+    icon:"SLEET",
+    color:"#00C2F6"
+},
+"Fog":{
+    icon:"FOG",
+    color:"#A1ACBD"
+},
+"Smoke":{
+    icon:"FOG",
+    color:"#A1ACBD"
+},
+"Tornado":{
+    icon:"WIND",
+    color:"#A1ACBD"
+},
+"ClearDay":{
+    icon:"CLEAR_DAY",
+    color:"yellow"
+}
+}
+     
