@@ -12,25 +12,23 @@ const News = () => {
     const[news,setnews]=useState([])
     const[headlines,setheadline]=useState([])
     useEffect(()=>{
-      setnews(article.articles.slice(21,22))
-      setheadline(article.articles.slice(30,33))
-      // const opt = {
-      //   method: "GET",
-      //   headers: {
-      //     "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
-      //   },
-      // };
-      // fetch(
-      //   `https://api.newscatcherapi.com/v2/latest_headlines?topic=news&countries=IN&lang=en`,
-      //   opt
-      // )
-      //   .then((response) => response.json())
-      //   .then((response) => {
-      //     setnews(response.articles.slice(0,1))
-      //     setheadline(response.articles.slice(1,4));
+      const opt = {
+        method: "GET",
+        headers: {
+          "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
+        },
+      };
+      fetch(
+        `https://api.newscatcherapi.com/v2/latest_headlines?topic=news&countries=IN&lang=en`,
+        opt
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          setnews(response.articles.slice(0,1))
+          setheadline(response.articles.slice(1,4));
           
-      //   })
-      //   .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
 
       const options = {
         method: 'GET',
