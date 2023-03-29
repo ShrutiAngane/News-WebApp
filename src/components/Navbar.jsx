@@ -76,7 +76,7 @@ const Navbar = (props) => {
           <ul className={`flex flex-col justify-start bg-offWhite w-[300px] ${dropdown?"pt-[80px]":"pt-[120px]"} md:pt-[220px] pl-[10px]`}>
             <Link
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
-              to="/home"
+              to="/"
               onClick={() => {togglemenu()
               setsearch(false)}}
               
@@ -307,7 +307,7 @@ const Navbar = (props) => {
         <ul className="flex flex-row list-none">
           <Link
             className="text-secondary relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary"
-            to="/home"
+            to="/"
             onClick={()=>setsearch(false)}
           >
             Home

@@ -18,7 +18,7 @@ function App() {
       <div className='bg-offWhite'>        
         <Navbar setquery={setquery} userinput={query} setcategory={setcategory}/>
         <Routes>
-          <Route path='/home' element={<News/>}/>
+          <Route path='/' element={<News/>}/>
            <Route path='/trending' element={<Trending/>}/>
            <Route path='/search' element={<Search q={query}/>}/>
           <Route path='/categories' element={<Categories cat={category}/>}/>
