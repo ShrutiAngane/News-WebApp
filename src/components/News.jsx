@@ -79,17 +79,17 @@ const News = () => {
         {weatherData.weather?<h4 className='text-[1.2rem] text-secondary'>{weatherData.weather[0].main}</h4>:''}
         </div>
         <div className='flex flex-col w-[90%] ss:w-[75%] md:w-[100%] lg:w-[85%] 2xl:w-[70%] rounded-md p-[1em] bg-[rgba(255,255,255,0.2)]'>
-          <div className='flex flex-col xs:flex-row justify-between sm:justify-around md:justify-between items-center'>
-              <p className='text-[#FFFFFF] text-[1.5rem]'>Pressure</p>
-              {weatherData.main?<p className='text-[1.5rem] text-[#FFFFFF]'>{weatherData.main.pressure}mbar</p>:'Pressure not found'}
+          <div className='flex justify-between sm:justify-around md:justify-between items-center'>
+              <p className='text-[#FFFFFF] text-[0.9rem] md:text-[1.5rem]'>Pressure</p>
+              {weatherData.main?<p className='text-[0.9rem] md:text-[1.5rem] text-[#FFFFFF]'>{weatherData.main.pressure}mbar</p>:'Pressure not found'}
           </div>
-          <div className='flex flex-col xs:flex-row justify-between sm:justify-around md:justify-between items-center'>
-              <p className='text-[#FFFFFF] text-[1.5rem]'>Humidity</p>
-              {weatherData.main?<p className='text-[1.5rem] text-[#FFFFFF]'>{weatherData.main.humidity}%</p>:'humidity not found'}
+          <div className='flex justify-between sm:justify-around md:justify-between items-center'>
+              <p className='text-[#FFFFFF] text-[0.9rem] md:text-[1.5rem]'>Humidity</p>
+              {weatherData.main?<p className='text-[0.9rem] md:text-[1.5rem] text-[#FFFFFF]'>{weatherData.main.humidity}%</p>:'humidity not found'}
           </div>
-          <div className='flex flex-col xs:flex-row justify-between sm:justify-around md:justify-between items-center'>
-              <p className='text-[#FFFFFF] text-[1.5rem]'>WindSpeed</p>
-              {weatherData.wind?<p className='text-[1.5rem] text-[#FFFFFF]'>{weatherData.wind.speed}km/h</p>:'windspeed not found'}
+          <div className='flex justify-between sm:justify-around md:justify-between items-center'>
+              <p className='text-[#FFFFFF] text-[0.9rem] md:text-[1.5rem]'>WindSpeed</p>
+              {weatherData.wind?<p className='text-[0.9rem] md:text-[1.5rem] text-[#FFFFFF]'>{weatherData.wind.speed}km/h</p>:'windspeed not found'}
           </div>
         </div>
       </div>
