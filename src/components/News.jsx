@@ -12,6 +12,7 @@ const News = () => {
     const[weatherData,setweather]=useState({})
     const[news,setnews]=useState([])
     const[headlines,setheadline]=useState([])
+    const[loading,setloading]=useState(true)
     const weatherapi=import.meta.env.VITE_APP_WEATHERAPI_KEY;
     useEffect(()=>{
       const opt = {
@@ -27,8 +28,8 @@ const News = () => {
         .then((response) => response.json())
         .then((response) => {
           setnews(response.articles.slice(0,1))
-          setheadline(response.articles.slice(1,4));
-          
+          setheadline(response.articles.slice(1,4))
+          setloading((prev)=>!prev)         
         })
         .catch((err) => console.log(err));
 
@@ -50,8 +51,9 @@ const News = () => {
 
     },[])
   return (
-    <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
-      <section className='flex md:col-start-1 col-end-3 md:row-end-1 md:items-start'>
+    <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 md:gap-x-4 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
+      {loading && <Spinner/>}
+      <section className={`${loading?'hidden':'flex'} md:col-start-1 col-end-3 md:row-end-1 md:items-start`}>
       {news.map((element)=>{
         return <div key={element._id} className='flex flex-col justify-between m-0 lg:items-center md:grid md:gap-x-5 md:grid-cols-2  w-full'>
           <div className='bg-black md:col-span-3 w-[100%]'>
@@ -67,8 +69,8 @@ const News = () => {
       })}
         
     </section>
-    <section className='md:col-start-3 z-0 md:row-end-1 max-w-full max-h-full'>
-      <div className='flex flex-col bg-primary h-[100%] justify-evenly items-center p-[10px] 2xl:p-[30px]'>
+    <section className={`${loading?'hidden':'flex'} md:col-start-3 z-0 md:row-end-1 max-w-full max-h-full`}>
+      <div className='flex flex-col bg-primary h-[100%] w-[100%] justify-evenly items-center p-[10px] 2xl:p-[30px]'>
         <h2 className='font-bolder text-softOrange text-[25px] 2xl:text-[30px] text-center mb-5 md:mb-0 drop-shadow-md'>TODAY'S WEATHER</h2>
         <div className='flex flex-col items-center gap-3'>
         {weatherData.weather?<ReactAnimatedWeather icon={weathericons[weatherData.weather[0].main]?weathericons[weatherData.weather[0].main].icon : weathericons.ClearDay.icon} color={weathericons[weatherData.weather[0].main]?weathericons[weatherData.weather[0].main].color:weathericons.ClearDay.color} size={112} animate={true}/>:<p>Default image</p>}
@@ -92,7 +94,7 @@ const News = () => {
         </div>
       </div>
     </section>
-    <section className='flex flex-col md:flex-row justify-between md:items-center col-start-1 col-end-4 row-start-2 row-end-2 h-fit max-w-full'>
+    <section className={`${loading?'hidden':'flex'} flex-col md:flex-row justify-between md:items-center col-start-1 col-end-4 row-start-2 row-end-2 h-fit max-w-full`}>
       {headlines.map((element,index)=>{
         return <div className='grid grid-rows-1 items-center gap-x-1 md:w-[330px] lg:w-[400px] 2xl:w-[500px] w-fit' key={element._id}>
           <img src={/d=blank/.test(element.media)?defaultimg2:element.media} className='max-w-[200px] w-[150px] md:max-w-[150px] 2xl:max-w-[200px] 2xl:w-[200px] h-[100%] object-fill' onError={(e)=>e.target.src=defaultimg}></img>

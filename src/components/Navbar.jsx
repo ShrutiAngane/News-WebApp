@@ -60,7 +60,7 @@ const Navbar = (props) => {
   return (
     <nav className="flex justify-between items-center overflow-hidden md:ml-[20px] md:mr-[20px]">
       <div>
-        <img src={logo}></img>
+        <Link to='/'><img src={logo}></img></Link>
       </div>
       <div className="md:hidden">
         <img

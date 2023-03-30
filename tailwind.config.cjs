@@ -15,7 +15,8 @@ module.exports = {
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        errorfont:["Alkatra", "cursive"]
+        errorfont:["Alkatra", "cursive"],
+        loadingfont:["Kanit", "sans-serif"]
       },
     },
     screens: {
