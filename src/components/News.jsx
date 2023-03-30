@@ -95,7 +95,7 @@ const News = () => {
     <section className='flex flex-col md:flex-row justify-between md:items-center col-start-1 col-end-4 row-start-2 row-end-2 h-fit max-w-full'>
       {headlines.map((element,index)=>{
         return <div className='grid grid-rows-1 items-center gap-x-1 md:w-[330px] lg:w-[400px] 2xl:w-[500px] w-fit' key={element._id}>
-          <img src={/d=blank/.test(element.media)?defaultimg2:element.media} className=' max-w-[150px] h-full ss:max-w-[200px] lg:h-[200px] object-fill' onError={(e)=>e.target.src=defaultimg}></img>
+          <img src={/d=blank/.test(element.media)?defaultimg2:element.media} className='max-w-[150px] 2xl:max-w-[200px] h-[100%] object-fill' onError={(e)=>e.target.src=defaultimg}></img>
           <div className='flex flex-col h-full w-full justify-evenly items-start col-start-2'>
             <h4 className='font-inter text-[40px] ss:text-[50px] text-grayishBlue font-bold'>{`0${(index+1)}`}</h4>
             <h2 className='font-inter text-primary font-bold hover:underline cursor-pointer text-[13px] sm:text-[16px] md:text-[16px] lg:text-[18px] 2xl:text-[20px]'><a href={element.link} className='m-0'>{element.title?element.title.length>67?element.title.slice(0,60)+'...':element.title:element.excerpt}</a></h2>

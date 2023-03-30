@@ -22,7 +22,7 @@ function App() {
            <Route path='/trending' element={<Trending/>}/>
            <Route path='/search' element={<Search q={query}/>}/>
           <Route path='/categories' element={<Categories cat={category}/>}/>
-          <Route path='/*' element={<Error/>}/>
+          <Route path='*' element={<Error/>}/>
         </Routes>
       </div>
     </>
