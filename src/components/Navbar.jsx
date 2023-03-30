@@ -306,7 +306,7 @@ const Navbar = (props) => {
       <div className="hidden md:flex">
         <ul className="flex flex-row list-none">
           <Link
-            className="text-secondary relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary"
+            className="text-secondary relative navlink m-10 font-bold text-[18px] 2xl:text-[20px] cursor-pointer hover:text-primary"
             to="/"
             onClick={()=>setsearch(false)}
           >
@@ -314,16 +314,16 @@ const Navbar = (props) => {
           </Link>
           <div
             ref={dropdownrefmob}
-            className={`text-secondary m-10 ${dropdownmob?'':'navlink relative'} font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}
+            className={`text-secondary m-10 ${dropdownmob?'':'navlink relative'} font-bold text-[18px] 2xl:text-[20px] cursor-pointer hover:text-primary`}
             onClick={() => setdropdownmob((prev)=>!prev)}
           >
             Categories
             <ul
               className={`${
-                dropdownmob ? "grid grid-rows-5 grid-cols-3 xl:gap-x-2" : "hidden"
+                dropdownmob ? "grid grid-rows-5 grid-cols-3 2xl:gap-x-2" : "hidden"
               } absolute bg-softRed bg-blend-overlay rounded-lg text-white z-10 max-w-max mt-5 right-[139px] shadow-lg shadow-orange-700`}
             >
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="sport"
@@ -332,7 +332,7 @@ const Navbar = (props) => {
                   Sports
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="tech"
@@ -341,7 +341,7 @@ const Navbar = (props) => {
                   Technology
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="world"
@@ -350,7 +350,7 @@ const Navbar = (props) => {
                   World
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="finance"
@@ -359,7 +359,7 @@ const Navbar = (props) => {
                   Finance
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="politics"
@@ -368,7 +368,7 @@ const Navbar = (props) => {
                   Politics
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="business"
@@ -377,7 +377,7 @@ const Navbar = (props) => {
                   Business
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="economics"
@@ -386,7 +386,7 @@ const Navbar = (props) => {
                   Economics
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="entertainment"
@@ -395,7 +395,7 @@ const Navbar = (props) => {
                   Entertainment
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="beauty"
@@ -404,7 +404,7 @@ const Navbar = (props) => {
                   Beauty
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="travel"
@@ -413,7 +413,7 @@ const Navbar = (props) => {
                   Travel
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="music"
@@ -422,7 +422,7 @@ const Navbar = (props) => {
                   Music
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="food"
@@ -431,7 +431,7 @@ const Navbar = (props) => {
                   Food
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="science"
@@ -440,7 +440,7 @@ const Navbar = (props) => {
                   Science
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="gaming"
@@ -449,7 +449,7 @@ const Navbar = (props) => {
                   Gaming
                 </div>
               </Link>
-              <Link to="/categories" className=" xl:mb-4 bg-softRed xl:m-3">
+              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
                 <div
                   className="hover:underline"
                   data-value="energy"
@@ -461,7 +461,7 @@ const Navbar = (props) => {
             </ul>
           </div>
           <Link
-            className="text-secondary relative navlink m-10 font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary"
+            className="text-secondary relative navlink m-10 font-bold text-[18px] 2xl:text-[20px] cursor-pointer hover:text-primary"
             to="/trending"
           >
             Trending
@@ -471,7 +471,7 @@ const Navbar = (props) => {
             onClick={()=>setsearch(true)}
             className={`${search?'m-[10px]':'m-10'}`}
           >
-            <p className={`text-secondary ${search?"hidden":"flex"} relative navlink  font-bold text-[18px] xl:text-[20px] cursor-pointer hover:text-primary`}>Search</p>
+            <p className={`text-secondary ${search?"hidden":"flex"} relative navlink  font-bold text-[18px] 2xl:text-[20px] cursor-pointer hover:text-primary`}>Search</p>
             <div
             className={`${
               search ? "flex" : "hidden"
