@@ -282,16 +282,14 @@ const Navbar = (props) => {
               <input
                 type="text"
                 placeholder="search anything here.."
-                className="text-center mr-[15px] border-2 h-[45px] w-[218px] md:m-[12px]"
+                className="text-center mr-[15px] border-2 h-[45px] w-[190px] ss:w-[218px] md:m-[12px]"
                 ref={searchquery}
-                // value={props.userinput}
-                // onChange={(e) => props.setquery(e.target.value)}
               ></input>
               <Link
               to="/search"
             >
               <button
-                className="bg-softRed text-white h-[40px] w-[83px] cursor-pointer"
+                className="bg-softRed text-white h-[40px] w-[60px] ss:w-[83px] cursor-pointer"
                 onClick={() => {props.setquery(searchquery.current.value)
                 togglemenu()}}
               >
