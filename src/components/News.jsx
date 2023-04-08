@@ -13,8 +13,27 @@ const News = () => {
     const[news,setnews]=useState([])
     const[headlines,setheadline]=useState([])
     const[loading,setloading]=useState(true)
+    const[loadingWeather,setloadingWeather]=useState(true)
     const weatherapi=import.meta.env.VITE_APP_WEATHERAPI_KEY;
     useEffect(()=>{
+
+       const dynamicWeather=(response)=>{
+          const coords=response.coords;
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=metric&lang=en&appid=${weatherapi}`)
+          .then((response)=>response.json())
+          .then((data)=>{
+            setweather(data)
+            setloadingWeather((prev)=>!prev)
+          })
+          .catch((err)=>console.log(err))
+          
+        }
+  
+        const staticWeather=()=>{
+          alert('latitude longitude not found!')
+        }
+
+      navigator.geolocation.getCurrentPosition(dynamicWeather,staticWeather)
       const opt = {
         method: "GET",
         headers: {
@@ -32,27 +51,10 @@ const News = () => {
           setloading((prev)=>!prev)         
         })
         .catch((err) => console.log(err));
-
-        const dynamicWeather=(response)=>{
-          const coords=response.coords;
-          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=metric&lang=en&appid=${weatherapi}`)
-          .then((response)=>response.json())
-          .then((data)=>setweather(data))
-          .catch((err)=>console.log(err))
-          
-        }
-  
-        const staticWeather=()=>{
-          alert('latitude longitude not found!')
-        }
-
-      navigator.geolocation.getCurrentPosition(dynamicWeather,staticWeather)
-      
-
     },[])
   return (
     <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 md:gap-x-4 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
-      {loading && <Spinner/>}
+      {loading && loadingWeather && <Spinner/>}
       <section className={`${loading?'hidden':'flex'} md:col-start-1 col-end-3 md:row-end-1 md:items-start`}>
       {news.map((element)=>{
         return <div key={element._id} className='flex flex-col justify-between m-0 lg:items-center md:grid md:gap-x-5 md:grid-cols-2  w-full'>
