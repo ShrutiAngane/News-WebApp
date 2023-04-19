@@ -5,6 +5,7 @@ import menuclose from '../assets/icon-menu-close.svg'
 import { Link } from "react-router-dom"
 import '../index.css'
 import useClickOutside from './UseClickOutside.js'
+import { categories } from '../constants/categories'
 
 
 
@@ -62,12 +63,9 @@ const Navbar = (props) => {
       <div>
         <Link to='/'><img src={logo}></img></Link>
       </div>
+      {/* Mobile navigation */}
       <div className="md:hidden">
-        <img
-          src={toggle ? menuclose : menu}
-          onClick={togglemenu}
-          className="w-[30px] h-[25px] cursor-pointer relative z-20"
-        ></img>
+        <img src={toggle ? menuclose : menu} onClick={togglemenu} className="w-[30px] h-[25px] cursor-pointer relative z-20"></img>
         <div
           className={`${
             toggle ? "right-0 scale-x-105 duration-500 flex" : "-right-[300px] scale-x-0 duration-500 flex"
@@ -78,16 +76,14 @@ const Navbar = (props) => {
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/"
               onClick={() => {togglemenu()
-              setsearch(false)}}
-              
+              setsearch(false)}}  
             >
               Home
             </Link>
             <Link
               className={`${dropdown?"mb-[10px]":"mb-[50px]"} relative navlink font-bold text-[15px] cursor-pointer hover:text-primary text-secondary`}
               to="/trending"
-              onClick={() => togglemenu()}
-              
+              onClick={() => togglemenu()}              
             >
               Trending
             </Link>
@@ -102,173 +98,16 @@ const Navbar = (props) => {
                 dropdown ? "grid grid-cols-2 mt-2" : "hidden"
               } absolute z-10 ml-[15px] md:mt-5`}
             >
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="sport"
-                  onClick={(e) => {getcategory(e)
-                   togglemenu()
-                  }}
-                >
-                  Sports
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="tech"
-                  onClick={(e) => {getcategory(e)
+              {categories.map((x)=>{
+                return <Link to='/categories' className='text-secondary hover:text-primary font-bold' key={x.id}>
+                  <div className='hover:underline'
+                  data-value={x.data}
+                  onClick={(e)=>{
+                    getcategory(e);
                     togglemenu()
-                  }}
-                >
-                  Technology
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="world"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  World
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="finance"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Finance
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="politics"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }
-                }
-                >
-                  Politics
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="business"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Business
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="economics"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }
-                }
-                >
-                  Economics
-                </div>
-              </Link>
-              <Link to="/categories" className=" text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="entertainment"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Entertainment
-                </div>
-              </Link>
-              <Link to="/categories" className=" text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="beauty"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Beauty
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="travel"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Travel
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="music"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Music
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="food"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Food
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="science"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Science
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary  hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="gaming"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Gaming
-                </div>
-              </Link>
-              <Link to="/categories" className="text-secondary hover:text-primary font-bold">
-                <div
-                  className="hover:underline"
-                  data-value="energy"
-                  onClick={(e) => {getcategory(e)
-                    togglemenu()
-                  }}
-                >
-                  Energy
-                </div>
-              </Link>
+                  }}>{x.name}</div>
+                </Link>
+              })}
             </ul>
             </div>
             <div
@@ -301,12 +140,12 @@ const Navbar = (props) => {
           </ul>
         </div>
       </div>
+{/* Desktop navigation */}
       <div className="hidden md:flex">
         <ul className="flex flex-row list-none">
           <Link
             className="text-secondary relative navlink m-10 font-bold text-[18px] 2xl:text-[20px] cursor-pointer hover:text-primary"
             to="/"
-            onClick={()=>setsearch(false)}
           >
             Home
           </Link>
@@ -321,141 +160,14 @@ const Navbar = (props) => {
                 dropdownmob ? "grid grid-rows-5 grid-cols-3 2xl:gap-x-2" : "hidden"
               } absolute bg-softRed bg-blend-overlay rounded-lg text-white z-10 max-w-max mt-5 right-[139px] shadow-lg shadow-orange-700`}
             >
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="sport"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Sports
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="tech"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Technology
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="world"
-                  onClick={(e) => getcategory(e)}
-                >
-                  World
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="finance"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Finance
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="politics"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Politics
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="business"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Business
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="economics"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Economics
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="entertainment"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Entertainment
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="beauty"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Beauty
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="travel"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Travel
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="music"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Music
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="food"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Food
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="science"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Science
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="gaming"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Gaming
-                </div>
-              </Link>
-              <Link to="/categories" className=" 2xl:mb-4 bg-softRed 2xl:m-3">
-                <div
-                  className="hover:underline"
-                  data-value="energy"
-                  onClick={(e) => getcategory(e)}
-                >
-                  Energy
-                </div>
-              </Link>
+              {categories.map((x)=>{
+                return <Link to='/categories' className='2xl:mb-4 bg-softRed 2xl:m-3' key={x.id}>
+                  <div className='hover:underline'
+                  data-value={x.data}
+                  onClick={(e)=>getcategory(e)}
+                  >{x.name}</div>
+                </Link>
+              })}
             </ul>
           </div>
           <Link
@@ -495,7 +207,6 @@ const Navbar = (props) => {
             </Link>
           </div>
           </div>
-          
         </ul>
       </div>
     </nav>

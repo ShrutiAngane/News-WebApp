@@ -5,9 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
-    margin: 30px 100px;
-}
+
 
 *{
     margin:5px 5px;
@@ -33,14 +31,14 @@
     margin-bottom: 30px;
     padding-top: 0px;
 }
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1060px) and (min-width:500px) {
 
     #root{
-        margin: 5px;
+        margin: 5px 30px;
     }
     
 }
-@media screen and (min-width:1400px) {
+@media screen and (min-width:1060px) {
     #root{
         margin: 30px;
     }
