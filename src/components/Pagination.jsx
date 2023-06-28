@@ -1,32 +1,37 @@
-import React from 'react'
+import React,{useState} from 'react'
 import previous from '../assets/angle-circle-left.svg'
 import Next from '../assets/angle-circle-right.svg'
 import '../index.css'
 
 const Pagination = (props) => {
- 
-    function paginate(p){
-        props.setpage(p)
+    const page_size=props.page_size<=10?1:props.page_size<=50?Math.ceil(props.page_size/10):5;
+    const[indexno,setIndex]=useState(1)
+    function paginate(){
+        props.setpage(props.page)
     }
   return (
     <section className="flex justify-center gap-[10px]">
       <button
-        className={`${props.page===1?'disabled':''} text-[10px] w-[25px] md:w-[40px] md:h-[150px] md:mx-5 md:text-[16px]`}
+        className={`${indexno==1?'disabled':''} text-[10px] w-[25px] md:w-[40px] md:h-[150px] md:mx-5 md:text-[16px]`}
         value={"Previous"}
-        onClick={() => props.setpage((prev) => prev - 1)}
+        onClick={() => {
+          setIndex((prev)=>prev+1)
+          props.setpage(props.page)}}
       >
-        <img src={previous} className={`${props.page===1?'opacity-25':''}`}/>
+        <img src={previous} className={`${indexno===1?'opacity-25':''}`}/>
         Previous
       </button>
       <div className="flex justify-center items-center mt-[-5px] gap-1">
-        {[...Array(props.page_size)].map((_, index) => {
+        {[...Array(page_size)].map((_, index) => {
           return (
             <span
               key={index}
               onClick={(e) => {
-                paginate(index+1) 
+                paginate()
+                console.log(e.target.innerHTML)
+                setIndex(e.target.innerHTML) 
               }}
-              className={`${props.page===index+1?'bg-grayishBlue':''}px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 cursor-pointer hover:bg-grayishBlue`}
+              className={`${indexno==index+1?'bg-grayishBlue':''}px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 cursor-pointer hover:bg-grayishBlue`}
             >
               {index+1}
             </span>
@@ -37,10 +42,11 @@ const Pagination = (props) => {
         className="text-[10px] w-[25px] md:w-[40px] md:h-[150px] md:text-[16px]"
         value={"Next"}
         onClick={() => {
-          props.setpage((prev) => prev + 1)
+          props.setpage(props.page)
+          setIndex((prev)=>prev+1)
         }}
       >
-        <img src={Next} className={`${props.page===10?'opacity-25':''}`}/>
+        <img src={Next} className={`${indexno===page_size?'opacity-25':''}`}/>
         Next
       </button>
     </section>

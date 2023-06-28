@@ -2,12 +2,12 @@ export const categories=[
     {
         id:1,
         name:'Sports',
-        data:'sport'
+        data:'sports'
     },
     {
         id:2,
         name:'Technology',
-        data:'tech'
+        data:'technology'
     },
     {
         id:3,
@@ -16,8 +16,8 @@ export const categories=[
     },
     {
         id:4,
-        name:'Finance',
-        data:'finance'
+        name:'Health',
+        data:'health'
     },
     {
         id:5,
@@ -31,8 +31,8 @@ export const categories=[
     },
     {
         id:7,
-        name:'Economics',
-        data:'economics'
+        name:'Top',
+        data:'top'
     },
     {
         id:8,
@@ -41,37 +41,23 @@ export const categories=[
     },
     {
         id:9,
-        name:'Beauty',
-        data:'beauty'
-    },
-    {
-        id:10,
-        name:'Travel',
-        data:'travel'
-    },
-    {
-        id:11,
-        name:'Music',
-        data:'music'
-    },
-    {
-        id:12,
         name:'Food',
         data:'food'
     },
     {
-        id:13,
+        id:10,
+        name:'Tourism',
+        data:'tourism'
+    },
+    {
+        id:11,
         name:'Science',
         data:'science'
     },
     {
-        id:14,
-        name:'Gaming',
-        data:'gaming'
+        id:12,
+        name:'Environment',
+        data:'environment'
     },
-    {
-        id:15,
-        name:'Energy',
-        data:'energy'
-    },
+    
 ]

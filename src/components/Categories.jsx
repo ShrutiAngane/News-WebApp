@@ -6,25 +6,26 @@ import Spinner from './Spinner'
 
 const Categories = (props) => {
   const[loading,setloading]=useState(true)
-  const[page,setpage]=useState(1)
-  const page_size=10
+  const[page,setpage]=useState('')
+  const [pageSize,setpageSize]=useState(0)
   const[categorynews,setcatnews]=useState([])
+  const[nextPage,setNextPage]=useState('')
 
   useEffect(()=>{
         const options = {
           method: "GET",
-          headers: {
-            "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
-          },
         };
+        const api=import.meta.env.VITE_APP_NEWSAPI_KEY;
         fetch(
-          `https://api.newscatcherapi.com/v2/latest_headlines?topic=${props.cat}&countries=IN&lang=en&page_size=${page_size}&page=${page}`,
+          `https://newsdata.io/api/1/news?apikey=${api}&language=en&country=in&category=${props.cat}&page=${page}`,
           options
         )
           .then((response) => response.json())
           .then((response) => {
             setloading(false)
-            setcatnews(response.articles);
+            setcatnews(response.results);
+            setNextPage(response.nextPage)
+            setpageSize(response.totalResults)
           })
           .catch((err) => console.log(err));
     },[page,props.cat])
@@ -34,7 +35,7 @@ const Categories = (props) => {
     <>
     {loading && <Spinner/>}
     <DisplayNews news={categorynews}/>
-    <Pagination page={page} setpage={setpage} page_size={page_size}/>
+    <Pagination page={nextPage} setpage={setpage} page_size={pageSize}/>
     </>
   )
 }

@@ -11,18 +11,16 @@ const Search = (props) => {
   useEffect(()=>{
         const options = {
           method: "GET",
-          headers: {
-            "x-api-key": import.meta.env.VITE_APP_NEWSAPI_KEY,
-          },
         };
+        const api=import.meta.env.VITE_APP_NEWSAPI_KEY;
         fetch(
-          `https://api.newscatcherapi.com/v2/search?q=${props.q}&lang=en&page_size=5`,
+          `https://newsdata.io/api/1/news?apikey=${api}&language=en&country=in&q=${props.q}`,
           options
         )
           .then((response) => response.json())
           .then((response) => {
             setloading(false)
-            setsearchnews(response.articles);
+            setsearchnews(response.results);
           })
           .catch((err) => console.log(err));
     },[props.q])
