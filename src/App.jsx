@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom"
 import Trending from './components/Trending';
 import Search from './components/Search';
 import Categories from './components/Categories';
-import Error from './components/Error';
+import PageNotFound from './components/PageNotFound';
 
 
 
@@ -22,7 +22,7 @@ function App() {
            <Route path='/trending' element={<Trending/>}/>
            <Route path='/search' element={<Search q={query}/>}/>
           <Route path='/categories' element={<Categories cat={category}/>}/>
-          <Route path='*' element={<Error/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </div>
     </>

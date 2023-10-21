@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import DisplayNews from './DisplayNews'
 import Spinner from './Spinner'
+import Error from './Error'
 
 
 const Search = (props) => {
@@ -27,7 +28,7 @@ const Search = (props) => {
   return (
     <>
     {loading && <Spinner/>}
-    <DisplayNews news={searchnews}/>
+    {searchnews.length==0?<Error text={'Sorry! No Results Found'} btn={''} subtext={'Please try searching something else'}/>:<DisplayNews news={searchnews}/>}
     </>
   )
 }

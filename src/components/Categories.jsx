@@ -2,6 +2,7 @@ import React,{ useState,useEffect } from 'react'
 import DisplayNews from './DisplayNews'
 import Pagination from './Pagination'
 import Spinner from './Spinner'
+import Error from './Error'
 
 
 const Categories = (props) => {
@@ -34,8 +35,8 @@ const Categories = (props) => {
   return (
     <>
     {loading && <Spinner/>}
-    <DisplayNews news={categorynews}/>
-    <Pagination page={nextPage} setpage={setpage} page_size={pageSize}/>
+    {categorynews.length==0?<Error text={'Sorry! No Results Found'} btn={''}/>:<DisplayNews news={categorynews}/>}
+    {categorynews.length==0?<Error/>:<Pagination page={nextPage} setpage={setpage} page_size={pageSize}/>}
     </>
   )
 }
