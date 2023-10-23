@@ -4,7 +4,7 @@ import menu from '../assets/icon-menu.svg'
 import menuclose from '../assets/icon-menu-close.svg'
 import { Link } from "react-router-dom"
 import '../index.css'
-import useClickOutside from './UseClickOutside.js'
+import useClickOutside from '../hooks/UseClickOutside'
 import { categories } from '../constants/categories'
 
 

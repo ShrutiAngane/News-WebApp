@@ -3,7 +3,6 @@ import defaultimg from '../assets/default_image.jpeg'
 import defaultimg2 from '../assets/default2.jpg'
 
 const DisplayNews = (props) => {
-  console.log(props.news)
   return (
     <section className='flex flex-col'>
       {props.news.map((element,index)=>{

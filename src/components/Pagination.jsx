@@ -31,7 +31,7 @@ const Pagination = (props) => {
                 console.log(e.target.innerHTML)
                 setIndex(e.target.innerHTML) 
               }}
-              className={`${indexno==index+1?'bg-grayishBlue':''}px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 cursor-pointer hover:bg-grayishBlue`}
+              className={`${indexno==index+1?'bg-grayishBlue':''} px-[2px] ss:p-[8px] ss:mx-2 md:p-4 md:mx-3 mt-0 cursor-pointer hover:bg-grayishBlue`}
             >
               {index+1}
             </span>

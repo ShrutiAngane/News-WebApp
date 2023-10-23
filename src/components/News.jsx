@@ -5,16 +5,19 @@ import article from '../constants/articles.json'
 import defaultimg2 from '../assets/default2.jpg'
 import ReactAnimatedWeather from 'react-animated-weather'
 import { weathericons } from '../constants/weather';
+import Error from './Error';
+import { useFetchData } from '../hooks/useFetchData';
 
 
 
 const News = () => {
+
     const[weatherData,setweather]=useState({})
-    const[news,setnews]=useState([])
-    const[headlines,setheadline]=useState([])
-    const[loading,setloading]=useState(true)
     const[loadingWeather,setloadingWeather]=useState(true)
     const weatherapi=import.meta.env.VITE_APP_WEATHERAPI_KEY;
+    const api=import.meta.env.VITE_APP_NEWSAPI_KEY;
+    const {fetchData,data,loading,error}=useFetchData()
+
     useEffect(()=>{
 
        const dynamicWeather=(response)=>{
@@ -37,24 +40,17 @@ const News = () => {
       const opt = {
         method: "GET",
       };
-      const api=import.meta.env.VITE_APP_NEWSAPI_KEY;
-      fetch(
-        `https://newsdata.io/api/1/news?apikey=${api}&language=en
-        `,opt
-      ).then((response)=>
-          response.json()
-      ).then((response) => {
-          setnews(response.results.slice(0,1))
-          setheadline(response.results.slice(1,4))
-          setloading((prev)=>!prev)         
-        })
-        .catch((err) => console.log(err));
+
+      fetchData(`https://newsdata.io/api/1/news?apikey=${api}&language=en`,false);
+      
     },[])
   return (
     <main className='flex flex-col justify-evenly md:grid md:grid-cols-3 md:gap-y-5 md:gap-x-4 max-w-full md:ml-[20px] mr-[20px] mt-[10px] mb-[10px]'>
       {loading && loadingWeather && <Spinner/>}
+      {data.length==0?<Error text={error}/>:
+      <>
       <section className={`${loading?'hidden':'flex'} md:col-start-1 col-end-3 md:row-end-1 md:items-start`}>
-      {news.map((element,index)=>{
+      {data.slice(0,1).map((element,index)=>{
         return <div key={index} className='flex flex-col justify-between m-0 lg:items-center md:grid md:gap-x-5 md:grid-cols-2  w-full'>
           <div className='bg-black md:col-span-3 w-[100%]'>
           <img src={/d=blank/.test(element.image_url)?defaultimg:element.image_url==null?defaultimg:element.image_url} className='md:col-span-3 m-0 w-[100%] h-[300px] sm:h-[400px] 2xl:h-[500px] object-contain object-center' onError={(e)=>e.target.src=defaultimg}></img>
@@ -95,7 +91,7 @@ const News = () => {
       </div>
     </section>
     <section className={`${loading?'hidden':'flex'} flex-col md:flex-row justify-between md:items-center col-start-1 col-end-4 row-start-2 row-end-2 h-fit max-w-full`}>
-      {headlines.map((element,index)=>{
+      {data.slice(1,4).map((element,index)=>{
         return <div className='grid grid-rows-1 items-center gap-x-1 md:w-[330px] lg:w-[400px] 2xl:w-[500px] w-fit' key={index}>
           <img src={/d=blank/.test(element.image_url)?defaultimg2:element.image_url==null?defaultimg2:element.image_url} className='max-w-[200px] w-[150px] md:max-w-[150px] 2xl:max-w-[200px] 2xl:w-[200px] h-[100%] object-fill' onError={(e)=>e.target.src=defaultimg}></img>
           <div className='flex flex-col h-full w-full justify-evenly items-start col-start-2'>
@@ -106,6 +102,7 @@ const News = () => {
 
       })}
     </section>
+    </>}
     </main>
   )
 }
